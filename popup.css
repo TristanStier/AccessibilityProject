@@ -1,54 +1,40 @@
-.container {
-  width: 280px;
-  color: #314d3e;
+/* Style the chat container */
+#chat-container {
+  width: 300px;
+  padding: 20px;
 }
 
-.title {
-  font-size: 14px;
-  font-weight: bold;
-  padding: 8px;
+/* Style chat messages */
+#chat-messages {
+  height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
 }
 
-.textbox {
+/* Style user input */
+#user-input {
   width: 100%;
-  font-size: 12px;
-  margin: 0;
-  padding: 0px 2px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
-.textbox:focus {
-  outline: 0;
-  border-color: #66afe9;
-}
-
-.bookmarks {
-  margin: 5px 5px;
-  padding: 3px;
-}
-
-.bookmark {
-  display: flex;
-  border-bottom-color: #00254d;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-radius: 0.8rem;
-  padding: 3px;
-  padding-bottom: 7px;
-  margin-bottom: 7px;
-}
-
-.bookmark-title {
-  padding-left: 2px;
-}
-
-.bookmark-controls img {
-  margin: 0 4px;
-  width: 18px;
-  height: 18px;
+/* Style send button */
+#send-button {
+  display: block;
+  margin-top: 10px;
+  background-color: #0078d4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
   cursor: pointer;
 }
 
-.bookmark-controls {
-  flex: auto;
-  text-align: right;
+/* Style send button on hover */
+#send-button:hover {
+  background-color: #0058a7;
 }

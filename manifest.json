@@ -3,29 +3,34 @@
     "version": "0.1.0",
     "manifest_version": 3,
     "description": "Personal chatbox assitant using OpenAI Api.",
-    "permissions": ["storage", "activeTab"],
-
-    "background": {
+    "permissions": ["storage", "activeTab", "scripting", "declarativeContent"],
+    "background": 
+    {
       "service_worker": "background.js"
     },
-    "content_scripts": [
+    "content_scripts":
+    [
       {
         "matches": ["<all_urls>"],
-        "js": ["contentScript.js"],
+        "js": ["content.js"],
         "run_at": "document_end"
       }
-    ],
-    "web_accessible_resources": [
+    ],    
+    "web_accessible_resources": 
+    [
       {
-        "resources": [
+        "resources": 
+        [
           "assets/*"
         ],
         "matches": ["<all_urls>"]
       }
     ],
-    "action": {
+    "action": 
+    {
       "default_popup": "popup.html",
-      "default_icon": {
+      "default_icon": 
+      {
         "16": "assets/extensionIcon.png",
         "48": "assets/extensionIcon.png",
         "128": "assets/extensionIcon.png"
