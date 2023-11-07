@@ -1,37 +1,34 @@
 {
-    "name": "My YT Bookmarks",
+    "name": "Accessibility Chatbox",
     "version": "0.1.0",
-    "description": "Saving timestamps in YT videos",
-    "permissions": ["storage", "tabs"],
-    "host_permissions": ["https://*.youtube.com/*"],
+    "manifest_version": 3,
+    "description": "Personal chatbox assitant using OpenAI Api.",
+    "permissions": ["storage", "activeTab"],
+
     "background": {
       "service_worker": "background.js"
     },
     "content_scripts": [
       {
-        "matches": ["https://*.youtube.com/*"],
-        "js": ["contentScript.js"]
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"],
+        "run_at": "document_end"
       }
     ],
     "web_accessible_resources": [
       {
         "resources": [
-          "assets/bookmark.png",
-          "assets/play.png",
-          "assets/delete.png",
-          "assets/save.png"
+          "assets/*"
         ],
-        "matches": ["https://*.youtube.com/*"]
+        "matches": ["<all_urls>"]
       }
     ],
     "action": {
+      "default_popup": "popup.html",
       "default_icon": {
-        "16": "assets/ext-icon.png",
-        "24": "assets/ext-icon.png",
-        "32": "assets/ext-icon.png"
-      },
-      "default_title": "My YT Bookmarks",
-      "default_popup": "popup.html"
-    },
-    "manifest_version": 3
+        "16": "assets/extensionIcon.png",
+        "48": "assets/extensionIcon.png",
+        "128": "assets/extensionIcon.png"
+      }
+    }
 }
