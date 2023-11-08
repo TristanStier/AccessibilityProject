@@ -38,3 +38,21 @@
 #send-button:hover {
   background-color: #0058a7;
 }
+
+/* Style for user's message (right side) */
+.user-message {
+    text-align: right;
+    color: #0073e6;
+    background-color: #e0e0e0;
+    padding: 8px;
+    margin: 8px 0;
+}
+
+/* Style for echo message (left side) */
+.echo-message {
+    text-align: left;
+    color: #333;
+    background-color: #f0f0f0; 
+    padding: 8px; 
+    margin: 8px 0; 
+}
