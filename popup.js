@@ -1,56 +1,32 @@
-// // Function to send a message to the content script
-// function sendMessageToContentScript(message) 
-// {
-//     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) 
-//     {
-//         if (chrome.runtime.lastError) 
-//         {
-//             console.error(chrome.runtime.lastError);
-//             return;
-//         }
+// Handle adding messages into chatbox
+function addMessageToChatbox(message, isUserMessage) 
+{
+    const chatMessages = document.getElementById('chat-messages');
+    const messageElement = document.createElement('p');
+    messageElement.innerText = message;
 
-//         const activeTab = tabs[0];
+    if (isUserMessage) 
+    {
+        messageElement.classList.add('user-message');
+    } 
+    else 
+    {
+        messageElement.classList.add('ai-message');
+    }
 
-//         if (activeTab) 
-//         {
-//             chrome.scripting.executeScript
-//             ({
-//                 target: { tabId: activeTab.id },
-//                 function:(message) => 
-//                 {
-//                     // Send a message to the content script
-//                     chrome.tabs.sendMessage(activeTab.id, {"message": "sendMessage"});
-//                 },
-//                 args:[message],
-//             });
-//         }
-//         else 
-//         {
-//             console.error("No active tab found.");
-//         }
-//     });
-// }
-
-// // Handle the send button click event
-// document.getElementById('send-button').addEventListener('click', function () 
-// {
-    // const userInput = document.getElementById('user-input');
-    // const message = userInput.value;
-
-    // if (message) 
-    // {
-    //     sendMessageToContentScript(message);
-    //     userInput.value = '';
-    // }
-// });
-
-function popup() {
-    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-        var activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, {"message": "start"});
-    });
+    chatMessages.appendChild(messageElement);
 }
 
-document.getElementById('send-button').addEventListener('click', function () {
-    document.getElementById('send-button').addEventListener("click", popup());
+// Handle the send button click event
+document.getElementById('send-button').addEventListener('click', function () 
+{
+    const userInput = document.getElementById('user-input');
+    const message = userInput.value;
+
+    if (message) 
+    {
+        addMessageToChatbox(message, false);
+        addMessageToChatbox(message, true);
+        userInput.value = '';
+    }
 });
