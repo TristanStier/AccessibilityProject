@@ -1,21 +1,27 @@
 const endpointUrl_Turbo = "https://api.openai.com/v1/chat/completions";
 const apiKey = "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";
 let messages = [];
+let systemPrompt = "";
 let currentUrl = "";
+
+function resetMessages(url)
+{
+  systemPrompt = "You're a user-friendly tech assistant guiding people through websites, answering questions in a simple way. You must always offer step-by-step guidance and prompt users to proceed to the next step by typing \"next\" when necessary. Only show 1 or 2 steps at a time to keep your responses short and concise. Never overwhelm your user with info since they probably have a basic understanding of tech. The current website you are assisting with is: " + url;
+  messages.push({ role: "system", content: systemPrompt });
+  loadMessagesForCurrentUrl();
+}
 
 // Load previous messages from storage when the extension is opened
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) 
 {
-  currentUrl = tabs[0].url;
-  loadMessagesForCurrentUrl();
+  resetMessages(tabs[0].url);
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) 
 {
   if (tab.active && changeInfo.url) 
   {
-    currentUrl = changeInfo.url;
-    loadMessagesForCurrentUrl();
+    resetMessages(changeInfo.url);
   }
 });
 
@@ -26,6 +32,7 @@ function loadMessagesForCurrentUrl()
     if (data[currentUrl]) 
     {
       messages = data[currentUrl];
+      
       // Display previous messages in the chatbox, excluding the first "system" message
       for (let i = 1; i < messages.length; i++) 
       {
@@ -34,12 +41,6 @@ function loadMessagesForCurrentUrl()
     }
   });
 }
-
-chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) 
-{
-  var systemPrompt = "You're a user-friendly tech assistant guiding people through websites, answering questions in a simple way. You must always offer step-by-step guidance and prompt users to proceed to the next step by typing \"next\" when necessary. Only show 1 or 2 steps at a time to keep your responses short and concise. Never overwhelm your user with info since they probably have a basic understanding of tech. The current website you are assisting with is: " + currentUrl;
-  messages.push({ role: "system", content: systemPrompt });
-});
 
 // Fetching message from AI using openAI fetch API
 async function getMessage() 
