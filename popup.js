@@ -1,5 +1,5 @@
 const endpointUrl_Turbo = "https://api.openai.com/v1/chat/completions";
-const apiKey = "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";
+const apiKey = "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";
 let messages = [];
 let systemPrompt = "";
 let currentUrl = "";
@@ -14,14 +14,16 @@ function resetMessages(url)
 // Load previous messages from storage when the extension is opened
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) 
 {
-  resetMessages(tabs[0].url);
+  currentUrl = tabs[0].url;
+  resetMessages(currentUrl);
 });
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) 
 {
   if (tab.active && changeInfo.url) 
   {
-    resetMessages(changeInfo.url);
+    currentUrl = changeInfo.url;
+    resetMessages(currentUrl);
   }
 });
 

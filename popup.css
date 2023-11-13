@@ -1,16 +1,18 @@
 /* Style the chat container */
 #chat-container {
-  width: 300px;
+  width: 350px;
+  height: 400px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Hide overflowing content */
 }
 
 /* Style chat messages */
 #chat-messages {
-  height: 200px;
+  height: 280px;
   overflow-y: scroll;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -73,4 +75,3 @@
   margin: 8px 0;
   font-style: italic;
 }
-
