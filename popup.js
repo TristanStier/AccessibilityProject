@@ -1,5 +1,5 @@
 const endpointUrl_Turbo = "https://api.openai.com/v1/chat/completions";
-const apiKey = "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";
+const apiKey = "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";
 let messages = [];
 let systemPrompt = "";
 let currentUrl = "";
@@ -75,6 +75,10 @@ async function getMessage()
         const messagesForUrl = {};
         messagesForUrl[currentUrl] = messages;
         chrome.storage.sync.set(messagesForUrl);
+
+        // Scroll to the bottom
+        const chatMessages = document.getElementById("chat-messages");
+        chatMessages.scrollTop = chatMessages.scrollHeight;
       });
     }
   });
@@ -115,8 +119,37 @@ document.getElementById("send-button").addEventListener("click", function ()
     messages.push({ role: "user", content: message });
     getMessage();
     userInput.value = "";
+
+    // Scroll to the bottom
+    const chatMessages = document.getElementById("chat-messages");
+    chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 });
+
+// Load font size from storage when the extension is opened
+chrome.storage.sync.get("fontSize", function (data) 
+{
+  const fontSize = data.fontSize || 14; // Default font size is 14px
+  document.getElementById("font-size-slider").value = fontSize;
+  setFontSize(fontSize);
+});
+
+// Handle the font size slider change event
+document.getElementById("font-size-slider").addEventListener("input", function () 
+{
+  const fontSize = this.value;
+  setFontSize(fontSize);
+
+  // Save the font size to storage
+  chrome.storage.sync.set({ fontSize: fontSize });
+});
+
+// Function to set font size
+function setFontSize(fontSize) 
+{
+  const fontSizeString = fontSize + "px";
+  document.getElementById("chat-messages").style.fontSize = fontSizeString;
+}
 
 // Handle the clear memory button click event
 document.getElementById("clear-memory-button").addEventListener("click", function () 

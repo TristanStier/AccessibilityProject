@@ -1,7 +1,7 @@
 /* Style the chat container */
 #chat-container {
   width: 350px;
-  height: 400px;
+  height: 420px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -74,4 +74,15 @@
   padding: 8px;
   margin: 8px 0;
   font-style: italic;
+}
+
+/* Style for font size container and label */
+#font-size-container {
+  margin-top: 10px;
+}
+
+#font-size-container label {
+  display: inline-block;
+  margin-right: 5px;
+  font-size: 14px;
 }
