@@ -3,11 +3,7 @@
     "version": "0.1.0",
     "manifest_version": 3,
     "description": "Personal chatbox assitant using OpenAI Api.",
-    "permissions": ["storage", "activeTab", "scripting", "declarativeContent"],
-    "background": 
-    {
-      "service_worker": "background.js"
-    },    
+    "permissions": ["storage", "activeTab", "scripting", "declarativeContent"],   
     "web_accessible_resources": 
     [
       {
