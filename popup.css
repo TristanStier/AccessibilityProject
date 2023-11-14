@@ -30,7 +30,7 @@
 }
 
 /* Style send button and clear memory button */
-#send-button, #clear-memory-button {
+#input-container button {
   display: inline-block;
   margin-top: 10px;
   margin-left: 5px;
@@ -43,7 +43,7 @@
 }
 
 /* Style send button and clear memory button on hover */
-#send-button:hover, #clear-memory-button:hover {
+#input-container button:hover {
   background-color: #0058a7;
 }
 

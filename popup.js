@@ -1,5 +1,5 @@
 const endpointUrl_Turbo = "https://api.openai.com/v1/chat/completions";
-const apiKey = "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";
+const apiKey = "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";
 let messages = [];
 let systemPrompt = "";
 let currentUrl = "";
@@ -166,3 +166,24 @@ document.getElementById("clear-memory-button").addEventListener("click", functio
   messages = [];
   messages.push({ role: "system", content: systemPrompt });
 });
+
+// Handle the speak latest button click event
+document.getElementById("speak-latest-button").addEventListener("click", function () 
+{
+  const latestAIMessage = messages[messages.length - 1]?.content;
+  if(speechSynthesis.speaking)
+  {
+    speechSynthesis.cancel();
+  }
+  else if (latestAIMessage && messages.length>1) 
+  {
+    speakText(latestAIMessage);
+  }
+});
+
+// Function to speak text using the Web Speech API
+function speakText(text) 
+{
+  const utterance = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(utterance);
+}
