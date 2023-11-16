@@ -1,12 +1,12 @@
 const endpointUrl_Turbo = "https://api.openai.com/v1/chat/completions";
-const apiKey = "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";
+const apiKey = "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";
 let messages = [];
 let systemPrompt = "";
 let currentUrl = "";
 
 function resetMessages(url)
 {
-  systemPrompt = "You're a user-friendly tech assistant guiding people through websites, answering questions in a simple way. You must always offer step-by-step guidance and prompt users to proceed to the next step by typing \"next\" when necessary. Only show 1 or 2 steps at a time to keep your responses short and concise. Never overwhelm your user with info since they probably have a basic understanding of tech. The current website you are assisting with is: " + url;
+  systemPrompt = "You're a user-friendly tech assistant guiding people through websites, answering questions in a simple way. You are dealing with people who arent smart and have little to no understanding of tech. You must always offer step-by-step guidance and prompt users to proceed to the next step by typing \"next\" when necessary. Only show 1 or 2 steps at a time to keep your responses short and concise. Never overwhelm your user with info since they probably have a basic understanding of tech. The current website you are assisting with is: " + url;
   messages.push({ role: "system", content: systemPrompt });
   loadMessagesForCurrentUrl();
 }
